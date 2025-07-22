@@ -1,0 +1,20 @@
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: backend/Docker/Local/Postgres/Dockerfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - bank_fraud_detection_local_db:/var/lib/postgresql/data
+    env_file:
+      - ./backend/app/envs/.env.local
+    networks:
+      - bank_fraud_detection_local_nw
+
+networks:
+  bank_fraud_detection_local_nw:
+    external: true
+
+volumes:
+  bank_fraud_detection_local_db: {}

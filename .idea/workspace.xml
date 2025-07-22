@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23e1ff24-2043-4e9e-98dc-27bc3c0dead8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app/core/logging.py" afterDir="false" />
+    <list default="true" id="23e1ff24-2043-4e9e-98dc-27bc3c0dead8" name="Changes" comment="Added Loguru for logging">
+      <change afterPath="$PROJECT_DIR$/backend/Docker/Local/Fastapi/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Docker/Local/Postgres/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/local.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/api/routes/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/api/routes/home.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/core/logging.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/core/logging.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/envs/.env.local" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/envs/.env.local" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,24 +24,25 @@
         <option value="FastAPI main" />
         <option value="FastAPI test_main" />
         <option value="Python Script" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "deveshshrestha20"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;deveshshrestha20&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/deveshshrestha20/Bank-Fraud-Detection-Backend.git",
-    "accountId": "cf34103f-0ad4-43de-9dd8-531c4d59dc66"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/deveshshrestha20/Bank-Fraud-Detection-Backend.git&quot;,
+    &quot;accountId&quot;: &quot;cf34103f-0ad4-43de-9dd8-531c4d59dc66&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -66,9 +71,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Legion\PycharmProjects\FastAPI Bank Fraud Detection with AI\ML\backend" />
       <recent name="C:\Users\Legion\PycharmProjects\FastAPI Bank Fraud Detection with AI\ML\backend\app" />
       <recent name="C:\Users\Legion\PycharmProjects\FastAPI Bank Fraud Detection with AI\ML" />
-      <recent name="C:\Users\Legion\PycharmProjects\FastAPI Bank Fraud Detection with AI\ML\backend" />
     </key>
   </component>
   <component name="RunManager">
@@ -104,11 +109,25 @@
       <option name="presentableId" value="Default" />
       <updated>1753093196711</updated>
       <workItem from="1753093197765" duration="2639000" />
-      <workItem from="1753136889694" duration="960000" />
+      <workItem from="1753136889694" duration="2284000" />
+      <workItem from="1753163494002" duration="4374000" />
     </task>
+    <task id="LOCAL-00001" summary="Added Loguru for logging">
+      <option name="closed" value="true" />
+      <created>1753138009228</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753138009228</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Loguru for logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Loguru for logging" />
   </component>
 </project>
