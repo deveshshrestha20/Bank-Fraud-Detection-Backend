@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Literal
 
 class Settings(BaseSettings):
-    ENVIRONMENT: Literal["Local","staging", "production"] = "Local"
+    ENVIRONMENT: Literal["local","staging", "production"] = "local"
 
     model_config = SettingsConfigDict(
         env_file = "backend/app/envs/.env.local",
