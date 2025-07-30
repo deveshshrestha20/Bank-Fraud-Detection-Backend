@@ -90,9 +90,9 @@ services:
       - "traefik.http.routers.rabbitmq.entrypoints=web"
       - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localhost`)"
       - "traefik.http.routers.rabbitmq.service=rabbitmq-service"
-      - "traefik.htp.services.rabbitmq-service.loadbalancer.server.port=15672"
+      - "traefik.http.services.rabbitmq-service.loadbalancer.server.port=15672"
 
-  celery worker:
+  celery_worker:
     <<: *api
     ports: []
     command: /start-celeryworker.sh
@@ -112,9 +112,9 @@ services:
       - "traefik.http.routers.flower.entrypoints=web"
       - "traefik.http.routers.flower.rule=Host(`flower.localhost`)"
       - "traefik.http.routers.flower.service=flower-service"
-      - "traefik.htp.services.flower-service.loadbalancer.server.port=5555"
+      - "traefik.http.services.flower-service.loadbalancer.server.port=5555"
 
-  celery:
+  celery_beat:
     <<: *api
     ports: []
     command: /start-celerybeat.sh
