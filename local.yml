@@ -13,7 +13,7 @@ services:
     command:
       - --providers.docker
 
-  api:
+  api: &api
     build:
       context: .
       dockerfile: ./backend/docker/local/fastapi/Dockerfile
@@ -26,6 +26,9 @@ services:
       - ./backend/app/envs/.env.local
     depends_on:
       - postgres
+      - mailpit
+      - redis
+      - rabbitmq
     command: /start.sh
     labels:
       - "traefik.enable=true"
@@ -67,6 +70,55 @@ services:
     networks:
       - bank_fraud_detection_local_nw
 
+  redis:
+    image: docker.io/redis:7.0-alpine
+    command: redis-server --appendonly yes
+    networks:
+      - bank_fraud_detection_local_nw
+
+  rabbitmq:
+    image: docker.io/rabbitmq:3.13-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - bank_fraud_detection_rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - bank_fraud_detection_local_nw
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rabbitmq.entrypoints=web"
+      - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localhost`)"
+      - "traefik.http.routers.rabbitmq.service=rabbitmq-service"
+      - "traefik.htp.services.rabbitmq-service.loadbalancer.server.port=15672"
+
+  celery worker:
+    <<: *api
+    ports: []
+    command: /start-celeryworker.sh
+
+  flower:
+    <<: *api
+    ports:
+      - "5555:5555"
+    volumes:
+      - bank_fraud_detection_flower_data:/data
+    command: /start-flower.sh
+    depends_on:
+      - redis
+      - rabbitmq
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.flower.entrypoints=web"
+      - "traefik.http.routers.flower.rule=Host(`flower.localhost`)"
+      - "traefik.http.routers.flower.service=flower-service"
+      - "traefik.htp.services.flower-service.loadbalancer.server.port=5555"
+
+  celery:
+    <<: *api
+    ports: []
+    command: /start-celerybeat.sh
+
 networks:
   bank_fraud_detection_local_nw:
     external: true
@@ -74,3 +126,5 @@ networks:
 volumes:
   bank_fraud_detection_local_db: {}
   bankfraud_mailpit_data: {}
+  bank_fraud_detection_flower_data: {}
+  bank_fraud_detection_rabbitmq_data: {}
