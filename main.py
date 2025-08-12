@@ -4,12 +4,9 @@ from contextlib import asynccontextmanager
 
 from backend.app.api.main import api_router
 from backend.app.core.logging import get_logger
-from backend.app.database.session import engine, init_db, check_database_connection
+from backend.app.database.session import engine, init_db
 
 logger = get_logger()
-
-
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -21,7 +18,6 @@ async def lifespan(app: FastAPI):
         # Initialize database with models and connection verification
         logger.info("Initializing database...")
         await init_db()
-        logger.info("Database initialized successfully")
 
         logger.info("Application started successfully")
 
