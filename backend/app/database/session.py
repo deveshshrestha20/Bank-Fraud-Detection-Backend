@@ -16,10 +16,7 @@ def load_models():
     """Load all database models"""
     try:
         # Import all your models here to ensure they are registered with SQLModel
-        # Example:
-        # from backend.app.models.user import User
-        # from backend.app.models.transaction import Transaction
-        # from backend.app.models.fraud_detection import FraudDetection
+        from backend.app.models.user import User
 
         logger.info("All models imported successfully")
     except Exception as e:
