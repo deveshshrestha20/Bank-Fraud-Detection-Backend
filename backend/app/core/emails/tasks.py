@@ -1,7 +1,7 @@
 import asyncio
 
 from fastapi_mail import MessageSchema, MessageType, MultipartSubtypeEnum
-from pydantic import EmailStr
+
 
 from backend.app.core.celery_app import celery_app
 from backend.app.core.logging import get_logger
@@ -20,22 +20,22 @@ logger = get_logger()
 )
 
 def send_email(
-        self,*,recipients: list[EmailStr], subject: str, html_content: str,
+        self, *, recipients: list[str], subject: str, html_content: str,
         plain_content: str,
-
 ) -> bool:
     try:
+
         message = MessageSchema(
             subject=subject,
             recipients=recipients,
             body=html_content,
             subtype=MessageType.html,
             alternative_body=plain_content,
-            multipart_subtype=MultipartSubtypeEnum.alternative
+            multipart_subtype=MultipartSubtypeEnum.alternative,
         )
         asyncio.run(fastmail.send_message(message))
         logger.info(f"Email sent to {recipients} with subject {subject}")
         return True
-    except Exception:
-        logger.error(f"Email failed to send to {recipients} with subject {subject}")
+    except Exception as e:
+        logger.error(f"Email failed to send to {recipients} with subject {subject}: {e}")
         return False
