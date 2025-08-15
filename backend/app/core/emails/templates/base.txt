@@ -1,0 +1,7 @@
+Bank Fraud Detection System
+==========================
+
+{% block content %}{% endblock %}
+
+--------------------------
+© 2025 YourBank. All rights reserved.

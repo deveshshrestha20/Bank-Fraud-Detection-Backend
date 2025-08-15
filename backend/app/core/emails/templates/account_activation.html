@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>Hello {{ user_name }},</p>
+<p>Welcome to YourBank! Please activate your account by clicking the link below:</p>
+<p><a href="{{ activation_link }}">Activate Account</a></p>
+<p>If you did not create an account, please ignore this email.</p>
+{% endblock %}

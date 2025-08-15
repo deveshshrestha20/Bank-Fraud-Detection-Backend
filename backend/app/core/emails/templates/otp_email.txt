@@ -1,0 +1,9 @@
+{% extends "base.txt" %}
+
+{% block content %}
+Hello {{ user_name }},
+
+Your OTP is: {{ otp }}
+
+This OTP is valid for 10 minutes.
+{% endblock %}
