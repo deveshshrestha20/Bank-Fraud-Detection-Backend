@@ -45,6 +45,3 @@ async def register(user_data: UserCreateSchema, session: AsyncSession = Depends(
 
 
 
-@register_router.post("/login", response_model=UserReadSchema)
-async def login(user_data: UserReadSchema, session: AsyncSession):
-
