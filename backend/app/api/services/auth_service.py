@@ -179,7 +179,7 @@ class AuthService:
         password = user_data_dict.pop("password")
 
         new_user = User(
-            username=generate_username(),
+            username=generate_username(user_data.first_name,user_data.last_name),
             hashed_password=hash_password(password),
             is_active=False,
             account_status=AccountStatusSchema.PENDING,
@@ -227,13 +227,7 @@ class AuthService:
                     },
                 )
             if user.is_active:
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail={
-                        "status": "error",
-                        "message": "User already activated",
-                    },
-                )
+                raise ValueError("User already active")
             await self.reset_user_state(user, session, clear_otp=True, log_action=True)
 
             user.is_active = True
@@ -244,27 +238,18 @@ class AuthService:
 
             return user
 
+
         except jwt.ExpiredSignatureError:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail={
-                    "status": "error",
-                    "message": "Activation token expired",
-                },
-            )
+
+            raise ValueError("Activation token has expired. Please request a new activation email.")
+
         except jwt.InvalidTokenError:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail={
-                    "status": "error",
-                    "message": "Invalid activation token",
-                },
-            )
+            raise ValueError("Invalid activation token.")
         except HTTPException as http_ex:
             raise http_ex
         except Exception as e:
             logger.error(f"Failed to activate user account: {e}")
-            raise
+            raise e
 
     async def verify_login_otp(
             self,
